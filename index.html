@@ -235,9 +235,9 @@
 			color: #d62828
 		}
 		strong{
-			font-family: 'aria', cursive;
+			font-family: 'Sacramento', cursive;
 			text-align: center;
-			font-size: 20px;
+			font-size: 17px;
 			color: #d62828
 		}
         @keyframes scale {
@@ -282,19 +282,14 @@
 	  <div class="daysCount" id="days-counter">加载中...</div>
     </div>
     <script>
-	// 设置起始日期
 	  $(document).ready(function() {
-	            // 设置起始日期
-	            const startDate = new Date('2025-02-20');
+	            const startDate = new Date('2025-02-19');
 	
-	            // 获取当前日期
 	            const currentDate = new Date();
 	
-	            // 计算天数差
 	            const timeDifference = currentDate - startDate;
 	            const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-	
-	            // 使用 jQuery 更新页面内容
+				
 	            $('#days-counter').text(daysDifference + ' 天');
 	        });
     
