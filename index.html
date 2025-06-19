@@ -1,314 +1,126 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>神秘信封</title>
-	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Sacramento&display=swap" rel="stylesheet">
-    <style>
-        body {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          background-color: #fae1dd;
-        }
-        
-        .container {
-          position: relative;
-        }
-        
-        .valentines {
-          position: relative;
-          top:50px;
-          cursor: pointer;
-          animation: up 3s linear infinite;
-        }
-        
-        @keyframes up {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-30px);
-          }
-        }
-        
-        .envelope {
-          position: relative;
-          width: 300px;
-          height:200px;
-          background-color: #f08080; 
-        }
-        
-        .envelope:before {
-          background-color: #f08080; 
-          content:"";
-          position: absolute;
-          width: 212px;
-          height: 212px;
-          transform: rotate(45deg);
-          top:-105px;
-          left:44px;
-          border-radius:30px 0 0 0;
-        }
-        
-        .card {
-          position: absolute;
-          background-color: #eae2b7;
-          width: 270px;
-          height: 170px;
-          top:5px;
-          left:15px;
-          box-shadow: -5px -5px 100px rgba(0,0,0,0.4); 
-        }
-        
-        .card:before {
-          content:"";
-          position: absolute;
-          border:3px solid #003049;
-          border-style: dotted;
-          width: 240px;
-          heighT: 140px;
-          left:12px;
-          top:12px;
-        }
-        
-        .text {
-          position: absolute;
-          font-family: 'Brush Script MT', cursive;
-          font-size: 16px;
-          text-align: center;
-          line-height:35px;
-          top:23px;
-          left:18px;
-		  right: 16px;
-          color: #003049;
-        }
-        .heart {
-          background-color: #d62828;
-          display: inline-block;
-          height: 30px;
-          margin: 0 10px;
-          position: relative;
-          top: 110px;
-          left:105px;
-          transform: rotate(-45deg);
-          width: 30px;
-        }
-        
-        .heart:before,
-        .heart:after {
-          content: "";
-          background-color: #d62828;
-          border-radius: 50%;
-          height: 30px;
-          position: absolute;
-          width: 30px;
-        }
-        
-        .heart:before {
-          top: -15px;
-          left: 0;
-        }
-        
-        .heart:after {
-          left: 15px;
-          top: 0;
-        }
-        
-        .hearts {
-          position: absolute  
-        }
-        
-        .one, .two, .three, .four, .five {
-          background-color: red;
-          display: inline-block;
-          height: 10px;
-          margin: 0 10px;
-          position: relative;
-          transform: rotate(-45deg);
-          width: 10px;
-          top:50px;
-        }
-        
-        .one:before,
-        .one:after, .two:before, .two:after, .three:before, .three:after, .four:before, .four:after, .five:before, .five:after {
-          content: "";
-          background-color: red;
-          border-radius: 50%;
-          height: 10px;
-          position: absolute;
-          width: 10px;
-        }
-        
-        .one:before, .two:before, .three:before, .four:before, .five:before {
-          top: -5px;
-          left: 0;
-        }
-        
-        .one:after, .two:after, .three:after, .four:after, .five:after {
-          left: 5px;
-          top: 0;
-        }
-          
-        .one {
-          left:10px;
-          animation: heart 1s ease-out infinite; 
-        }
-        
-        .two {
-          left:30px;
-          animation: heart 2s ease-out infinite; 
-        }
-        
-        .three {
-          left:50px;
-          animation: heart 1.5s ease-out infinite;
-        }
-        
-        .four {
-          left:70px;
-          animation: heart 2.3s ease-out infinite;
-        }
-        
-        .five {
-          left:90px;
-          animation: heart 1.7s ease-out infinite;
-        }
-        
-        @keyframes heart {
-          0%{
-            transform: translateY(0) rotate(-45deg) scale(0.3);
-            opacity: 1;
-          }
-          100%{
-            transform: translateY(-150px) rotate(-45deg) scale(1.3);
-            opacity: 0.5;
-          }
-        }
-        
-        .front {
-          position: absolute;
-          border-right: 180px solid #f4978e;
-          border-top: 95px solid transparent;
-          border-bottom: 100px solid transparent;
-          left:120px;
-          top:5px;
-          width:0;
-          height:0;
-          z-index:10;
-        }
-        
-        .front:before {
-          position: absolute;
-          content:"";
-          border-left: 300px solid #f8ad9d;
-          border-top: 195px solid transparent;
-          left:-120px;
-          top:-95px;
-          width:0;
-          height:0;
-        }
-        
-        .shadow {
-          position: absolute;
-          width: 330px;
-          height: 25px;
-          border-radius:50%;
-          background-color: rgba(0,0,0,0.3);
-          top:265px;
-          left:-15px;
-          animation: scale 3s linear infinite;
-          z-index:-1;
-        }
-		.date{
-			 font-family: 'Sacramento', cursive;
-			 text-align: center;
-			 margin-top: 120px;
-			 font-size: 20px;
-			 color: #d62828
-		}
-		.daysCount{
-			font-family: 'Sacramento', cursive;
-			text-align: center;
-			font-size: 30px;
-			color: #d62828
-		}
-		strong{
-			font-family: 'Sacramento', cursive;
-			text-align: center;
-			font-size: 17px;
-			color: #d62828
-		}
-        @keyframes scale {
-          0%, 100% {
-            transform: scaleX(1);
-          }
-          50% {
-            transform: scaleX(0.85);
-          }
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <div class="container">
-      <div class="valentines">
-        <div class="envelope"></div>
-        <div class="front"></div>
-        <div class="card">
-		<div class="text">
-			船夫在看向天气做决定时
-			<br>
-			海却始终保持着某种等待的温度
-		  </div>
-		
-          <div class="heart" </div>
-          </div>
-          <div class="hearts">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-            <div class="five"></div>
-          </div>
-        </div>
-      </div>
-      <div class="shadow"></div>
-
-	  <div class="date">
-		  <p>从 <strong id="start-date">2025-02-20</strong> 
-			已经过去了
-		  </p>
-	  </div>
-	  
-	  <div class="daysCount" id="days-counter">加载中...</div>
-
-    </div>
-    <script>
-	  $(document).ready(function() {
-	            const startDate = new Date('2025-02-19');
-	
-	            const currentDate = new Date();
-	
-	            const timeDifference = currentDate - startDate;
-	            const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-				
-	            $('#days-counter').text(daysDifference + ' 天');
-	        });
-    
-	$(document).ready(function () {
-        $('.container').mouseenter(function () {
-            $('.card').stop().animate({
-                top: '-90px'
-            }, 'slow');
-        }).mouseleave(function () {
-            $('.card').stop().animate({
-                top: 0
-            }, 'slow');
-        });
-    });
-    </script>
-</body>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			html {
+			  min-height: 100%;
+			}
+			body {
+			  box-sizing: border-box;
+			  height: 100%;
+			  background-color: #000000;
+			  background-image: radial-gradient(#11581E, #041607), url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			  font-family: 'Inconsolata', Helvetica, sans-serif;
+			  font-size: 1.5rem;
+			  color: rgba(128, 255, 128, 0.8);
+			  text-shadow:
+			      0 0 1ex rgba(51, 255, 51, 1),
+			      0 0 2px rgba(255, 255, 255, 0.8);
+			}
+			.noise {
+			  pointer-events: none;
+			  position: absolute;
+			  width: 100%;
+			  height: 100%;
+			  background-image: url("https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif");
+			  background-repeat: no-repeat;
+			  background-size: cover;
+			  z-index: -1;
+			  opacity: .02;
+			}
+			.overlay {
+			  pointer-events: none;
+			  position: absolute;
+			  width: 100%;
+			  height: 100%;
+			  background:
+			      repeating-linear-gradient(
+			      180deg,
+			      rgba(0, 0, 0, 0) 0,
+			      rgba(0, 0, 0, 0.3) 50%,
+			      rgba(0, 0, 0, 0) 100%);
+			  background-size: auto 4px;
+			  z-index: 1;
+			}
+			
+			.overlay::before {
+			  content: "";
+			  pointer-events: none;
+			  position: absolute;
+			  display: block;
+			  top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  width: 100%;
+			  height: 100%;
+			  background-image: linear-gradient(
+			      0deg,
+			      transparent 0%,
+			      rgba(32, 128, 32, 0.2) 2%,
+			      rgba(32, 128, 32, 0.8) 3%,
+			      rgba(32, 128, 32, 0.2) 3%,
+			      transparent 100%);
+			  background-repeat: no-repeat;
+			  animation: scan 7.5s linear 0s infinite;
+			}
+			
+			@keyframes scan {
+			  0%        { background-position: 0 -100vh; }
+			  35%, 100% { background-position: 0 100vh; }
+			}
+			
+			.terminal {
+			  box-sizing: inherit;
+			  position: absolute;
+			  height: 100%;
+			  width: 1000px;
+			  max-width: 100%;
+			  padding: 4rem;
+			  text-transform: uppercase;
+			}
+			
+			.output {
+			  color: rgba(128, 255, 128, 0.8);
+			  text-shadow:
+			      0 0 1px rgba(51, 255, 51, 0.4),
+			      0 0 2px rgba(255, 255, 255, 0.8);
+			}
+			
+			.output::before {
+			  content: "> ";
+			}
+			a {
+			  color: #fff;
+			  text-decoration: none;
+			}
+			
+			a::before {
+			  content: "[";
+			}
+			
+			a::after {
+			  content: "]";
+			}
+			
+			.errorcode {
+			  color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="noise"></div>
+		<div class="overlay"></div>
+		<div class="terminal">
+		  <h1>错误 <span class="errorcode">404</span></h1>
+		  <p class="output">你已抵达互联网的无人之境。这里空无一物，一切荡然无存。</p>
+		  <p class="output">要不，试着刷新一下？</p>
+		  <p class="output">骗你的，刷新也没什么用。</p>
+		  <p class="output">祝你好运。</p>
+		</div>
+	</body>
 </html>
